@@ -1,0 +1,4 @@
+name: Loveme
+version: '${project.version}'
+main: loveme.loveme.Loveme
+api-version: 1.18
