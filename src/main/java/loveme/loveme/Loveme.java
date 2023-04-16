@@ -10,7 +10,7 @@ public final class Loveme extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        Bukkit.getLogger().info("[LOVEME] System started");
+        Bukkit.getLogger().info("[Loveme] System started");
 
         new NoteBlockHandler(this);
     }
@@ -18,6 +18,6 @@ public final class Loveme extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        Bukkit.getLogger().info("[LOVEME] System shutdown");
+        Bukkit.getLogger().info("[Loveme] System shutdown");
     }
 }

@@ -4,6 +4,7 @@ import loveme.loveme.Loveme;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -13,31 +14,22 @@ public class NoteBlockHandler implements Listener {
     public NoteBlockHandler(Loveme plugin){
         Bukkit.getPluginManager().registerEvents(this, plugin);
     }
-
-    /**
-     * Lowest
-     * Low
-     * Normal
-     * High
-     * Highest
-     * ------
-     * Monitor
-     */
-
-    @EventHandler(priority = EventPriority.LOW)
-    public void onNoteBlockPlace_Low(BlockPlaceEvent event){
-        if(event.getBlock().getType() == Material.NOTE_BLOCK){
-            event.getBlock().setType(Material.GRASS_BLOCK);
-        }
-    }
     @EventHandler
-    public void onNoteBlockPlace_Normal(BlockPlaceEvent event) {
-        Block block = event.getBlock();
+    public void onNoteBlockPlace(BlockPlaceEvent event){
 
-        if(block.getType() != Material.NOTE_BLOCK){
-            return;
+        if(event.getBlock().getType() == Material.NOTE_BLOCK){
+            if(event.getPlayer().hasPermission("loveme.admin")){
+                return;
+            }
+
+            if(event.getPlayer().hasPermission("loveme.block.noteblock")){
+                String PlayerName = event.getPlayer().getName();
+                Bukkit.getLogger().info("[Loveme] Player "+PlayerName+" has placed noteblock!");
+                event.getBlock().setType(Material.GRASS_BLOCK);
+                return;
+            }
         }
 
-        Bukkit.getLogger().info("NoteBlock was placed");
     }
+
 }
