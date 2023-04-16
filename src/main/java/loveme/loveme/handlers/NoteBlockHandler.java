@@ -9,8 +9,8 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 
-public class TorchHandler implements Listener {
-    public TorchHandler(Loveme plugin) {
+public class NoteBlockHandler implements Listener {
+    public NoteBlockHandler(Loveme plugin){
         Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
@@ -25,20 +25,19 @@ public class TorchHandler implements Listener {
      */
 
     @EventHandler(priority = EventPriority.LOW)
-    public void onTorchPlace_Low(BlockPlaceEvent event){
-        if(event.getBlock().getType() == Material.TORCH){
-            event.getBlock().setType(Material.DIAMOND_BLOCK);
+    public void onNoteBlockPlace_Low(BlockPlaceEvent event){
+        if(event.getBlock().getType() == Material.NOTE_BLOCK){
+            event.getBlock().setType(Material.GRASS_BLOCK);
         }
     }
-
     @EventHandler
-    public void onTorchPlace_Normal(BlockPlaceEvent event) {
+    public void onNoteBlockPlace_Normal(BlockPlaceEvent event) {
         Block block = event.getBlock();
 
-        if(block.getType() != Material.TORCH){
+        if(block.getType() != Material.NOTE_BLOCK){
             return;
         }
 
-        Bukkit.getLogger().info("A torch was placed");
+        Bukkit.getLogger().info("NoteBlock was placed");
     }
 }
