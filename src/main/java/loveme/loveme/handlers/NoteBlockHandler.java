@@ -12,7 +12,9 @@ import org.bukkit.event.block.BlockPlaceEvent;
 
 public class NoteBlockHandler implements Listener {
     public NoteBlockHandler(Loveme plugin){
+
         Bukkit.getPluginManager().registerEvents(this, plugin);
+
     }
     @EventHandler
     public void onNoteBlockPlace(BlockPlaceEvent event){
@@ -26,6 +28,7 @@ public class NoteBlockHandler implements Listener {
                 String PlayerName = event.getPlayer().getName();
                 Bukkit.getLogger().info("[Loveme] Player "+PlayerName+" has placed noteblock!");
                 event.getBlock().setType(Material.GRASS_BLOCK);
+
                 return;
             }
         }

@@ -11,7 +11,6 @@ public final class Loveme extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         Bukkit.getLogger().info("[Loveme] System started");
-
         new NoteBlockHandler(this);
     }
 
