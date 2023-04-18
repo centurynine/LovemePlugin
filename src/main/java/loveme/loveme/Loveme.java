@@ -2,9 +2,11 @@ package loveme.loveme;
 
 import loveme.loveme.handlers.LavaHandler;
 import loveme.loveme.handlers.NoteBlockHandler;
+import loveme.loveme.MonsterScan.MonsterScanHandler;
 import loveme.loveme.handlers.PlayerHandler;
 import loveme.loveme.handlers.TorchHandler;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
@@ -26,6 +28,10 @@ public final class Loveme extends JavaPlugin {
         new NoteBlockHandler(this);
         LavaHandler LavaDamageSend = new LavaHandler(this);
         LavaDamageSend.setValue(LavaDamage);
+
+        MonsterScanHandler monsterScanHandler;
+        monsterScanHandler = new MonsterScanHandler(this);
+
 
     }
 
