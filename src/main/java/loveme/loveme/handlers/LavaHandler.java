@@ -10,24 +10,27 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 
 public class LavaHandler implements Listener {
-    public LavaHandler(Loveme plugin){
+    public LavaHandler(Loveme plugin) {
         Bukkit.getPluginManager().registerEvents(this, plugin);
     }
+
     private double valueDamage;
 
     public void setValue(double value) {
         this.valueDamage = value;
     }
+
     @EventHandler
-    public void playerOnLava(EntityDamageEvent event){
-        Entity player = event.getEntity();
+    public void playerOnLava(EntityDamageEvent event) {
+        Entity entity = event.getEntity();
 
-        if (player.getLastDamageCause() != null && player.getLastDamageCause().getCause() == EntityDamageEvent.DamageCause.LAVA){
-            player.sendMessage("You in lava!");
-            Player player2 = (Player) player; // แปลงเป็น Player object
-            player2.setHealth(player2.getHealth() - valueDamage);
-            Bukkit.getLogger().info("Player in lava");
+        if (entity instanceof Player) {
+            Player player = (Player) entity;
+            if (player.getLastDamageCause() != null && player.getLastDamageCause().getCause() == EntityDamageEvent.DamageCause.LAVA) {
+                player.sendMessage("You are in lava!");
+                player.setHealth(player.getHealth() - valueDamage);
+                Bukkit.getLogger().info("Player in lava");
+            }
         }
-
     }
 }
