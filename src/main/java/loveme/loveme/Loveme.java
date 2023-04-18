@@ -24,8 +24,8 @@ public final class Loveme extends JavaPlugin {
         double LavaDamage = getConfig().getDouble("lava_damage");
         Bukkit.getLogger().info(String.valueOf(LavaDamage));
         new NoteBlockHandler(this);
-        new LavaHandler(this);
-
+        LavaHandler LavaDamageSend = new LavaHandler(this);
+        LavaDamageSend.setValue(LavaDamage);
 
     }
 
