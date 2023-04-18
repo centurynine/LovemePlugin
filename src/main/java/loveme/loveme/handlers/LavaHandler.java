@@ -27,9 +27,13 @@ public class LavaHandler implements Listener {
         if (entity instanceof Player) {
             Player player = (Player) entity;
             if (player.getLastDamageCause() != null && player.getLastDamageCause().getCause() == EntityDamageEvent.DamageCause.LAVA) {
-                player.sendMessage("You are in lava!");
-                player.setHealth(player.getHealth() - valueDamage);
-                Bukkit.getLogger().info("Player in lava");
+                double newHealth = player.getHealth() - valueDamage;
+                if (newHealth <= 0 ) {
+                    player.setHealth(0);
+                }
+                else {
+                    player.setHealth(newHealth);
+                }
             }
         }
     }
