@@ -1,9 +1,13 @@
 package loveme.loveme;
 
+import loveme.loveme.handlers.LavaHandler;
 import loveme.loveme.handlers.NoteBlockHandler;
+import loveme.loveme.handlers.PlayerHandler;
 import loveme.loveme.handlers.TorchHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.List;
 
 public final class Loveme extends JavaPlugin {
 
@@ -11,7 +15,15 @@ public final class Loveme extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         Bukkit.getLogger().info("[Loveme] System started");
+
+        saveDefaultConfig();
+        List<String> kitItem = (List<String>) getConfig().getList("kit");
+        for (String itemName : kitItem){
+            Bukkit.getLogger().info((itemName));
+        }
+
         new NoteBlockHandler(this);
+        new LavaHandler(this);
     }
 
     @Override
