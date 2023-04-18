@@ -2,3 +2,10 @@ name: Loveme
 version: '${project.version}'
 main: loveme.loveme.Loveme
 api-version: 1.18
+commands:
+  scan:
+    description: Scanning mob.
+    usage: /scan
+    aliases: [mobscan, ms, scmob]
+    permission: loveme.admin
+    permission-message: You do not have permission.

@@ -1,5 +1,6 @@
 package loveme.loveme;
 
+import loveme.loveme.MonsterScan.CommandScan;
 import loveme.loveme.handlers.LavaHandler;
 import loveme.loveme.handlers.NoteBlockHandler;
 import loveme.loveme.MonsterScan.MonsterScanHandler;
@@ -32,6 +33,7 @@ public final class Loveme extends JavaPlugin {
         MonsterScanHandler monsterScanHandler;
         monsterScanHandler = new MonsterScanHandler(this);
 
+        getCommand("scan").setExecutor(new CommandScan());
 
     }
 
