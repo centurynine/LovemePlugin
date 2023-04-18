@@ -18,7 +18,7 @@ public class LavaHandler implements Listener {
     public void playerOnLava(EntityDamageEvent event){
         Entity player = event.getEntity();
 
-        if (player.getLastDamageCause().getCause() == EntityDamageEvent.DamageCause.LAVA){
+        if (player.getLastDamageCause() != null && player.getLastDamageCause().getCause() == EntityDamageEvent.DamageCause.LAVA){
             player.sendMessage("You in lava!");
             Player player2 = (Player) player; // แปลงเป็น Player object
             player2.setHealth(player2.getHealth() - 4);

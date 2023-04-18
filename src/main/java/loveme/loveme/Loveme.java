@@ -21,9 +21,12 @@ public final class Loveme extends JavaPlugin {
         for (String itemName : kitItem){
             Bukkit.getLogger().info((itemName));
         }
-
+        double LavaDamage = getConfig().getDouble("lava_damage");
+        Bukkit.getLogger().info(String.valueOf(LavaDamage));
         new NoteBlockHandler(this);
         new LavaHandler(this);
+
+
     }
 
     @Override
