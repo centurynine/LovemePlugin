@@ -3,9 +3,9 @@ version: '${project.version}'
 main: loveme.loveme.Loveme
 api-version: 1.18
 commands:
-  scan:
+  scanmob:
     description: Scanning mob.
-    usage: /scan
+    usage: /scanmob
     aliases: [mobscan, ms, scmob]
     permission: loveme.admin
     permission-message: You do not have permission.

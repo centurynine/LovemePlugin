@@ -33,7 +33,7 @@ public final class Loveme extends JavaPlugin {
         MonsterScanHandler monsterScanHandler;
         monsterScanHandler = new MonsterScanHandler(this);
 
-        getCommand("scan").setExecutor(new CommandScan());
+        getCommand("scanmob").setExecutor(new CommandScan());
 
     }
 

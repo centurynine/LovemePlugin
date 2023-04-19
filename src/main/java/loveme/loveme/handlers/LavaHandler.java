@@ -26,6 +26,9 @@ public class LavaHandler implements Listener {
 
         if (entity instanceof Player) {
             Player player = (Player) entity;
+            if(player.getPlayer().hasPermission("loveme.antilava")){
+                return;
+            }
             if (player.getLastDamageCause() != null && player.getLastDamageCause().getCause() == EntityDamageEvent.DamageCause.LAVA) {
                 double newHealth = player.getHealth() - valueDamage;
                 if (newHealth <= 0 ) {

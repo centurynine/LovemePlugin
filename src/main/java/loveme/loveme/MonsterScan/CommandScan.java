@@ -1,6 +1,7 @@
 package loveme.loveme.MonsterScan;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -8,6 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+
+import java.util.List;
 
 public class CommandScan implements CommandExecutor {
     @Override
@@ -20,21 +23,30 @@ public class CommandScan implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-        String targetMonsterName = "Zombie"; // ชื่อมอนสเตอร์ที่ต้องการสแกน
-        int scanRange = 5; // ระยะที่ต้องการสแกน (บล็อค)
 
-        // หากไม่ใช่ผู้เล่น
-            for (Entity entity : player.getNearbyEntities(scanRange, scanRange, scanRange)) {
-                if (entity.getType() == EntityType.valueOf(targetMonsterName.toUpperCase())) {
-                    player.sendMessage("พบมอนสเตอร์ชื่อ " + targetMonsterName + " อยู่ใกล้คุณ!");
-                    Bukkit.getLogger().info("พบมอนสเตอร์ชื่อ " + targetMonsterName + " อยู่ใกล้ " + player.getName());
-                    return true;
+        if (player.getPlayer().hasPermission("loveme.admin")) {
+            if (args.length == 1) {
+                String monsterName = args[0].toLowerCase(); // ชื่อมอนสเตอร์ที่ต้องการหา (แปลงเป็นตัวพิมพ์เล็กทั้งหมด)
+
+                int range = 50; // ระยะทางสำหรับการค้นหา (50 บล็อค)
+                List<Entity> entities = player.getNearbyEntities(range, range, range);
+                for (Entity entity : entities) {
+                    String entityType = entity.getType().toString().toLowerCase(); // ชื่อประเภทของมอนสเตอร์ (แปลงเป็นตัวพิมพ์เล็กทั้งหมด)
+                    if (entityType.contains(monsterName)) {
+                        int x = entity.getLocation().getBlockX();
+                        int y = entity.getLocation().getBlockY();
+                        int z = entity.getLocation().getBlockZ();
+                        player.sendMessage(ChatColor.GREEN + "มอนสเตอร์ " + entityType + " อยู่ที่ x:" + x + " y:" + y + " z:" + z);
+                        return true;
+                    }
                 }
-
+                player.sendMessage("ไม่พบมอนสเตอร์ " + monsterName + " ในระยะ " + range + "บล็อค");
+            } else {
+                player.sendMessage(ChatColor.RED + "กรุณาระบุชื่อมอนสเตอร์ที่ต้องการค้นหา");
             }
-        player.sendMessage("ไม่พบมอนสเตอร์ " + targetMonsterName + " ในระยะ "+ scanRange + "บล็อค");
+            return true;
+        }
         return true;
-
-
     }
 }
+
